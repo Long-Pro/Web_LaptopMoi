@@ -1,0 +1,31 @@
+@import "../../constant.scss";
+.wrap{
+  height: $heightHeader;
+  background-color: #fff;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.title{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: $heightHeader;
+  /* identical to box height, or 122% */
+
+
+  color: #000000;
+}
+.user{
+  display: flex;
+  align-items: center;
+}
+.account{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000000;
+  padding-right:10px;
+}
