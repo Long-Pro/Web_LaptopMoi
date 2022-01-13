@@ -1,26 +1,53 @@
 import {useState} from 'react';
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import {change } from '../../store/slice/information'
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss'
-// console.log(styles)
+import {SUCCESS,FAIL} from '../../config'
 function Login() {
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
+  const information = useSelector(state => {
+    // console.log('-----------',state)
+    // // return state.information.value
+  })
+  const dispatch = useDispatch()
+  let navigate = useNavigate();
   const handleChangeAccount = (event) => {
     setAccount(event.target.value);
-    console.log(event.target.value)
+    // console.log(event.target.value)
   };
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
-    console.log(event.target.value)
+    // console.log(event.target.value)
   };
   const handleLogin=()=>{
     console.log({account,password})
     axios.post('/staff/login',{account,password})
       .then(res=>{
-        console.log(res)
+        let {data:{data,message,type,token}}=res
+        // console.log({data,message,type,token})
+        // console.log(res)
+        if(type==FAIL) toast.error(message[0], {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+        else{
+          dispatch(change({payload:data}))
+          localStorage.setItem('token', token);
+          navigate("/");
+        }
+        
       })
       .catch((error)=> {
         console.log(error);
@@ -59,6 +86,7 @@ function Login() {
           onClick={handleLogin}
         >Đăng nhập</Button>
       </div>
+      <ToastContainer />
     </div>
   );
 }

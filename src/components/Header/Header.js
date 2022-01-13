@@ -1,6 +1,7 @@
 import Avatar from '@mui/material/Avatar';
 import styles from './index.module.scss'
-// console.log(styles)
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 function Header({title,user}) {
   return (
     <div className={styles.wrap}>
