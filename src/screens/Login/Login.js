@@ -2,6 +2,8 @@ import {useState} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import {change } from '../../store/slice/information'
+import {changeIsLogin } from '../../store/slice/isLogin'
+
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -13,8 +15,6 @@ function Login() {
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
   const information = useSelector(state => {
-    // console.log('-----------',state)
-    // // return state.information.value
   })
   const dispatch = useDispatch()
   let navigate = useNavigate();
@@ -43,7 +43,9 @@ function Login() {
           progress: undefined,
           });
         else{
-          dispatch(change({payload:data}))
+          dispatch(change(data))
+          dispatch(changeIsLogin(true))
+          
           localStorage.setItem('token', token);
           navigate("/");
         }

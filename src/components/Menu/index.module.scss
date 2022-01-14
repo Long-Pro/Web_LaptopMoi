@@ -9,13 +9,44 @@
 }
 .logo{
   height: 50px;
-  padding: 4px 20px ;
+  padding: 0px 6px ;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 24px;
 }
-#item{
-  color:'blue'
+.item{
+  height: 50px;
+  color:#fff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  div{
+    margin-left: 10px;
+  }
+  svg{
+    margin-left: 16px;
+  }
 }
-a{
-  color:'blue'
+.text{
+
+}
+.active{
+  &:before {
+    content: "";
+    height: 50px;
+    width: 4px;
+    background-color: #fff;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    opacity: 0.1;
+
+  }
 }
