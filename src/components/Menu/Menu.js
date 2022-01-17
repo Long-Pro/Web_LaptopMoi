@@ -25,36 +25,36 @@ function Menu() {
           TỔNG QUAN
         </div>
       </NavLink>
-      <div className={styles.item}>
+      <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/customer">
         <PeopleOutlinedIcon sx={{ color: "#fff" }} />
-        <div className={styles.text}>
+        <div  className={styles.text} >
           KHÁCH HÀNG
         </div>
-      </div>
-      <div className={styles.item}>
+      </NavLink>
+      <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/bill">
         <DescriptionOutlinedIcon sx={{ color: "#fff" }} />
-        <div>
+        <div className={styles.text}>
           HÓA ĐƠN
         </div>
-      </div>
-      <div className={styles.item}>
+      </NavLink>
+      <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/staff">
         <AdminPanelSettingsOutlinedIcon sx={{ color: "#fff" }} />
-        <div>
+        <div className={styles.text}>
           NHÂN VIÊN
         </div>
-      </div>
+      </NavLink>
       <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/product">
         <CategoryOutlinedIcon sx={{ color: "#fff" }} />
-        <div>
+        <div className={styles.text}>
           SẢN PHẨM
         </div>
       </NavLink>
-      <div className={styles.item}>
+      <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/statistic">
         <EqualizerOutlinedIcon sx={{ color: "#fff" }} />
-        <div>
+        <div className={styles.text}>
           THỐNG KÊ
         </div>
-      </div>
+      </NavLink>
     </div>
   );
 }

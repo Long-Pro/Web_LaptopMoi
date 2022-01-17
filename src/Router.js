@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Product from './screens/Product/Product'
 import Dashboard from './screens/Dashboard/Dashboard'
+import Customer from './screens/Customer/Customer'
+
 import Login from './screens/Login/Login'
 import App from './App'
 import { useSelector, useDispatch } from 'react-redux'
@@ -23,6 +25,8 @@ function Router() {
         <Route path="/" element={<App />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/customer" element={<Customer />} />
+
         </Route>
       </Route>
       <Route path="/login" element={<Login />} />
