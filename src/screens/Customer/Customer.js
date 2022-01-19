@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import {useEffect,useState } from 'react'
+import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
@@ -12,9 +13,8 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { DataGrid } from '@mui/x-data-grid';
-import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
-
+import Modal from '@mui/material/Modal';
 import { ToastContainer, toast } from 'react-toastify';
 
 import {change } from '../../store/slice/title'
@@ -22,14 +22,18 @@ import styles from './index.module.scss'
 import {SUCCESS,FAIL} from '../../config'
 import {showErrorMess} from '../../lib/util'
 import {YMDTHMtoDMY,YMDTHMtoHMDMY} from '../../lib/myLib'
+import BillDetail from '../../components/BillDetail/BillDetail';
 
 
 
 function Customer() {
   const dispatch = useDispatch()
+  let navigate = useNavigate();
 
   const [info, setInfo] = useState({});
   const [bills, setBills] = useState([]);
+  const [bill, setBill] = useState({});
+  const [open, setOpen] = useState(false);
 
   const [value, setValue] = useState('');
   const [phones, setPhones] = useState([]);
@@ -62,7 +66,9 @@ function Customer() {
       
     })
     .catch((error)=> {
-      console.log(error);
+      let{data,status}=error.response
+      if(data=='Invalid Token'&&status==401) navigate("/login", { replace: true });
+      showErrorMess('Xác thực token thất bại')
     });
   },[])
   const handleChangeValue = (event, newValue) => {
@@ -102,13 +108,43 @@ function Customer() {
       }
     })
     .catch((error)=> {
-      console.log(error);
+      let{data,status}=error.response
+      if(data=='Invalid Token'&&status==401) navigate("/login", { replace: true });
+      showErrorMess('Xác thực token thất bại')
     });
     
   };
   const handleChangeFilter=(event)=>{
     setFilter(event.target.value);
     setValue('')
+  }
+  const handleClickRow=(params)=>{
+    let {id}=params
+    console.log(id)
+    let token=localStorage.getItem("token");
+    // console.log('token',token)
+    
+    axios.get(`/bills/id/${id}`,{
+      headers: {
+        'x-access-token':token,
+      }
+    })
+    .then(res=>{
+      let {data:{data,message,type}}=res
+      if(type==FAIL) showErrorMess(message[0])
+      else{ 
+        console.log(data)
+        let total=data.products.reduce((a,b)=>a+b.price*b.quantity,0)
+        data.total=total
+        setBill(data)   
+        setOpen(true)
+      }
+    })
+    .catch((error)=> {
+      let{data,status}=error.response
+      if(data=='Invalid Token'&&status==401) navigate("/login", { replace: true });
+      showErrorMess('Xác thực token thất bại')
+    });
   }
   const columns = [
     { field: 'id', headerName: 'Mã hóa đơn',flex: 1,},
@@ -133,7 +169,7 @@ function Customer() {
       renderCell: (params) =>{
 
         let {value}=params
-        let text= value==0?'Đã hủy':value==1?'Đang chờ xác nhận':value==2?'Đang giao':'Thành công'
+        let text= value==0?'Đã hủy':value==1?'Đang chờ xác nhận':value==2?'Đang giao':'Đã giao'
         let c=value==0?styles.danger:value==1?styles.info:value==2?styles.primary:styles.success
         return (
           <div className={clsx(styles.badge, c)}>
@@ -151,7 +187,7 @@ function Customer() {
           disablePortal
           id="combo-box-demo"
           options={filter=='phone'?phones:filter=='id'?ids:accounts}
-          sx={{ width: '290px',marginRight:'20px' }}
+          sx={{ width: '300px',marginRight:'20px' }}
           value={value}
           renderInput={(params) => <TextField {...params} label='Giá trị' />}//{label={filter=='phone'?'SDT':'ID'}}
           onChange={handleChangeValue}
@@ -176,12 +212,12 @@ function Customer() {
       <div className={styles.row}>
         {info._id&&<div className={styles.colLeft}>
           <div className={styles.title}>Thông tin khách hàng</div>
-          <TextField sx={{ width:'250px'}}  label="ID" variant="outlined" value={info._id} margin="normal"  InputProps={{readOnly: true}}/>
-          <TextField sx={{ width:'250px'}} label="Tài khoản" variant="outlined" value={info.account} margin="normal"  InputProps={{readOnly: true}}/>
-          <TextField sx={{ width:'250px'}} label="Họ tên" variant="outlined" value={info.name} margin="normal"  InputProps={{readOnly: true}}/>
-          <TextField sx={{ width:'250px'}} label="SĐT" variant="outlined" value={info.phone} margin="normal"  InputProps={{readOnly: true}}/>
-          <TextField sx={{ width:'250px'}} label="Ngày sinh" variant="outlined" value={YMDTHMtoDMY(info.birthday)} margin="normal"  InputProps={{readOnly: true}}/>
-          <TextField sx={{ width:'250px'}} label="Địa chỉ" variant="outlined" value={info.address}  margin="normal" InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}}  label="ID" variant="outlined" value={info._id} margin="normal"  InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}} label="Tài khoản" variant="outlined" value={info.account} margin="normal"  InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}} label="Họ tên" variant="outlined" value={info.name} margin="normal"  InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}} label="SĐT" variant="outlined" value={info.phone} margin="normal"  InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}} label="Ngày sinh" variant="outlined" value={YMDTHMtoDMY(info.birthday)} margin="normal"  InputProps={{readOnly: true}}/>
+          <TextField sx={{ width:'260px'}} label="Địa chỉ" variant="outlined" value={info.address}  margin="normal" InputProps={{readOnly: true}}/>
         </div>}
         <div className={styles.colRight}>
           <div className={styles.title} style={{marginBottom:36}}>Lịch sử mua hàng</div>
@@ -191,40 +227,20 @@ function Customer() {
             pageSize={6}
             rowsPerPageOptions={[5]}
             disableSelectionOnClick
-          />
-          {/* <div className={styles.bill}>
-            <div style={{marginRight:20}}>
-              <div>
-                <span className={styles.labelBill} >Mã đơn hàng:</span> 
-                <span className={styles.infoBill} >619f4152ff1891c047090e35</span>
-              </div>
-              <div>
-                <span className={styles.labelBill} >Tổng tiền:</span> 
-                <span className={styles.infoBill} style={{color:'blue'}} >
-                  <NumberFormat value={2456981} displayType={'text'} thousandSeparator={true} suffix={' vnd'} />
-                </span>
-              </div>
-            </div>
-            <div style={{marginRight:20}}>
-              <div>
-                <span className={styles.labelBill} >Thời gian:</span> 
-                <span className={styles.infoBill} >16:35 16/08/2000 </span>
-              </div>
-              <div>
-                <span className={styles.labelBill} >NV thực hiện:</span> 
-                <span className={styles.infoBill} >staff1 </span>
-              </div>
-            </div>
-            <div className={styles.wrapBadge}>
-              <div className={styles.badge}>
-                Đang chờ xử lý
-              </div>
-            </div>
-          </div> */}
-
-          
+            onRowClick={handleClickRow}
+          />         
         </div>
       </div>
+      <Modal
+        open={open}
+        onClose={()=>setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      > 
+        <div className={styles.wrapBill}>
+          <BillDetail bill={bill}/>
+        </div>
+      </Modal>
     </div>
   );
 }

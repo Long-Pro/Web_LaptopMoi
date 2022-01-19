@@ -7,6 +7,8 @@ import {
 import Product from './screens/Product/Product'
 import Dashboard from './screens/Dashboard/Dashboard'
 import Customer from './screens/Customer/Customer'
+import Bill from './screens/Bill/Bill'
+
 
 import Login from './screens/Login/Login'
 import App from './App'
@@ -26,6 +28,8 @@ function Router() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/product" element={<Product />} />
           <Route path="/customer" element={<Customer />} />
+          <Route path="/bill" element={<Bill />} />
+
 
         </Route>
       </Route>
