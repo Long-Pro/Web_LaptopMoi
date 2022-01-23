@@ -1,0 +1,66 @@
+@import "../../constant.scss";
+.wrap{
+  padding: 20px;
+  // background: #fff;
+  // height: 100%;
+}
+.wrapFilter{
+  display: flex;
+  justify-content: start;
+  background: #fff;
+  height: 100px;
+  align-items: center;
+  border-radius: 3px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  // justify-content: space-between;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 3px;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: calc(100vh - $heightHeader - 100px - 60px);
+}
+.colLeft{
+  // border: 1px solid #c4c4c4;
+  // border-radius: 3px;
+  flex: 1;
+  // height: 1000px;
+}
+.colRight{
+  width: 300px;
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  min-height: 300px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.wrapModalAddStaff{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  padding: 20px;
+  border-radius: 3px;
+  background: #fff;
+}
+.formAddStaff{
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+}
+.title{
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 20px;
+}

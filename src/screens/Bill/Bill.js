@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux'
-import {useEffect,useState } from 'react'
+import React,{useEffect,useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
 import { ToastContainer, toast } from 'react-toastify';
+import Pdf from "react-to-pdf";
+
 
 
 import TextField from '@mui/material/TextField';
@@ -26,6 +28,7 @@ import {showErrorMess,showSuccessMess} from '../../lib/util'
 import {YMDTHMtoDMY,YMDTHMtoHMDMY} from '../../lib/myLib'
 import BillDetail from '../../components/BillDetail/BillDetail';
 
+const ref = React.createRef();
 function Bill() {
   const dispatch = useDispatch()
   let navigate = useNavigate();
@@ -130,13 +133,15 @@ function Bill() {
         />
       </div>
       {bill._id&&<div className={styles.row}>
-        <div className={styles.colLeft}>
-          <BillDetail bill={bill}/>
+        <div className={styles.colLeft}  ref={ref}>
+          <BillDetail bill={bill} />
         </div>
         <div className={styles.colRight}>
-          <Button variant="contained" sx={{marginBottom:'20px',width:120}}>In</Button>
-          <Button variant="contained" sx={{marginBottom:'20px',width:120}} >Xuất file</Button>
-
+          <Button variant="contained" sx={{marginBottom:'20px',width:120}}  >In </Button>
+          <Pdf targetRef={ref} filename="code-example.pdf"  scale={0.9}>
+            {({ toPdf }) =><Button variant="contained" sx={{marginBottom:'20px',width:120}} onClick={toPdf} >Xuất file </Button>}
+          </Pdf>
+     
           {bill.type==1&&<>
             <Divider   sx={{width:'100%'}} />
             <Button variant="contained" fullWidth color="success" sx={{marginTop:'20px'}}

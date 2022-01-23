@@ -8,6 +8,8 @@ import Product from './screens/Product/Product'
 import Dashboard from './screens/Dashboard/Dashboard'
 import Customer from './screens/Customer/Customer'
 import Bill from './screens/Bill/Bill'
+import Staff from './screens/Staff/Staff'
+
 
 
 import Login from './screens/Login/Login'
@@ -29,6 +31,7 @@ function Router() {
           <Route path="/product" element={<Product />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/bill" element={<Bill />} />
+          <Route path="/staff" element={<Staff />} />
 
 
         </Route>
