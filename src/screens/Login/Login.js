@@ -7,7 +7,7 @@ import {changeIsLogin } from '../../store/slice/isLogin'
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss'
 import {SUCCESS,FAIL} from '../../config'
@@ -80,7 +80,7 @@ function Login() {
           onClick={handleLogin}
         >Đăng nhập</Button>
       </div>
-      <ToastContainer />
+
     </div>
   );
 }

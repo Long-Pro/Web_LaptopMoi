@@ -16,7 +16,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { ToastContainer, toast } from 'react-toastify';
+
 
 import StaffDetail from '../StaffDetail/StaffDetail';
 
@@ -244,7 +244,6 @@ function Header() {
             </Button>
           </DialogActions>
         </Dialog>
-        <ToastContainer />
     </>
   );
 }

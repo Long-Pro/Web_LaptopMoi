@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
-import { ToastContainer, toast } from 'react-toastify';
 import Pdf from "react-to-pdf";
 
 
@@ -189,7 +188,7 @@ function Bill() {
           </Button>
         </DialogActions>
       </Dialog>
-      <ToastContainer/>
+
     </div>
   );
 }

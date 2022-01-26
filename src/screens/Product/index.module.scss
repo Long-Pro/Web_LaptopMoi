@@ -1,0 +1,31 @@
+@import "../../constant.scss";
+.wrap{
+  padding: 20px;
+  // background: #fff;
+  // height: 100%;
+}
+.wrapFilter{
+  display: flex;
+  // justify-content: start;
+  background: #fff;
+  height: 100px;
+  align-items: center;
+  border-radius: 3px;
+  // padding: 20px;
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  // justify-content: space-between;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 3px;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: calc(100vh - $heightHeader - 100px - 60px);
+}
+.wrapBrand{
+  flex:1;
+
+}
+
