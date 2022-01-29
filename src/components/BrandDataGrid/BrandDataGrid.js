@@ -351,8 +351,9 @@ function BrandDataGrid() {
         aria-describedby="modal-modal-description"
       >
         <div className={styles.modal}>
-          <div className={styles.form}>
+          <div className={styles.form} style={{display:'flex',flexDirection:'column'}}>
             <div className={styles.title}>Chỉnh sửa thương hiệu {itemClick.name}</div>
+            <TextField sx={{ width:'300px'}} label="ID" variant="outlined" defaultValue={itemClick._id} margin="normal"  InputProps={{readOnly: true}} />
             <TextField sx={{ width:'300px'}} label="Tên" variant="outlined" value={objEditBrandValue.name} margin="normal"  
               onChange={(event)=>setObjEditBrandValue({...objEditBrandValue,name:event.target.value})}
               error={Boolean(objEditBrandMess.name)}

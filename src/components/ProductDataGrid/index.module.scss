@@ -1,0 +1,25 @@
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // width: 400px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 20px;
+  
+}
+.form{
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+}
+.title{
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.borderCustom{
+  border: 1px solid #c4c4c4;
+}

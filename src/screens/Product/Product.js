@@ -20,6 +20,7 @@ import {SUCCESS,FAIL} from '../../config'
 import {showErrorMess,showSuccessMess} from '../../lib/util'
 import {YMDTHMtoDMY,YMDTHMtoHMDMY} from '../../lib/myLib'
 import BrandDataGrid from '../../components/BrandDataGrid/BrandDataGrid';
+import ProductDataGrid from '../../components/ProductDataGrid/ProductDataGrid';
 
 function Product() {
   const dispatch = useDispatch()
@@ -34,36 +35,6 @@ function Product() {
   useEffect(()=>{
    
   },[bottomNavigation])
-
-  // const handleNavigation=()=>{
-  //   if(bottomNavigation==0){
-  //     let token=localStorage.getItem("token");
-  //     axios.get(`/brands`,{
-  //       headers: {
-  //         'x-access-token':token,
-  //       }
-  //     })
-  //     .then(res=>{
-  //       let {data,message,type}=res.data
-  //       if(type==FAIL) showErrorMess(message[0])
-  //       else{ 
-  //         console.log(data)
-  //         data.forEach(item=>item.id=item._id)
-  //         setListBrand(data)
-  //       }
-  //     })
-  //     .catch((error)=> {
-  //       console.log({error})
-  //       let{data,status}=error.response
-  //       if(data=='Invalid Token'&&status==401) navigate("/login", { replace: true });
-  //       showErrorMess('Xác thực token thất bại')
-  //     });
-  //   }
-  // }
-
-
-
-
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapFilter}>
@@ -86,7 +57,11 @@ function Product() {
         {bottomNavigation==0&&
           <div className={styles.wrapBrand}>
             <BrandDataGrid />
-
+          </div>
+        }
+        {bottomNavigation==1&&
+          <div className={styles.wrapBrand}>
+            <ProductDataGrid />
           </div>
         }
       </div>
