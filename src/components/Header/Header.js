@@ -65,7 +65,7 @@ function Header() {
       let {data:{data,message,type}}=res
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         setStaff(data)
         setOpenInfo(true)
       }
@@ -78,7 +78,7 @@ function Header() {
   }
   const handleChangePass=()=>{
     let {currentPassword,newPassword,reNewPassword}=password
-    console.log('password',password)
+    // console.log('password',password)
     let messCurrentPassword,messNewPassword,messReNewPassword
     if(currentPassword.length<6) messCurrentPassword='Vui lòng nhập >= 6 kí tự'
       else messCurrentPassword=''
@@ -91,9 +91,9 @@ function Header() {
       newPassword:messNewPassword,
       reNewPassword:messReNewPassword
     })
-    console.log({messCurrentPassword,messNewPassword,messReNewPassword})
+    // console.log({messCurrentPassword,messNewPassword,messReNewPassword})
     if(messCurrentPassword!=''||messNewPassword!=''||messReNewPassword!='') return
-    console.log(111)
+    // console.log(111)
     let token=localStorage.getItem("token");
     axios.patch(`/staffs/${account}/password`,{password:currentPassword,newPassword:newPassword},{
       headers: {
@@ -102,10 +102,10 @@ function Header() {
     })
     .then(res=>{
       let {data,message,type}=res.data
-      console.log( {data,message,type})
+      // console.log( {data,message,type})
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         setOpenPassword(false)
         showSuccessMess(message[0])
         setPassword({
@@ -125,13 +125,6 @@ function Header() {
     localStorage.removeItem("token");
     navigate("/login");
   }
-
-  const test=()=>{
-    console.log('password',password)
-    console.log('errorMessPassword',errorMessPassword)
-  }
-
-
   return (
     <>
       <div className={styles.wrap}>

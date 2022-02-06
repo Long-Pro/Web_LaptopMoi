@@ -12,7 +12,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import styles from './index.module.scss'
 import {YMDTHMtoHMDMY} from '../../lib/myLib'
 function BillDetail({bill}) {
-  console.log('bill',bill)
+  //console.log('bill',bill)
   let createTypeBill=()=>{
     if(bill.type==0) return (
       <div className={clsx(styles.badge,styles.danger)}>

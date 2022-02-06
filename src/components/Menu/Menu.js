@@ -19,12 +19,12 @@ function Menu() {
         <img src={logo} alt="Logo" className={styles.logo} />
       </div>
       <div style={{height:30}}></div>
-      <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/">
+      {/* <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/">
         <DashboardOutlinedIcon sx={{ color: "#fff" }} />
         <div className={styles.text}>
           TỔNG QUAN
         </div>
-      </NavLink>
+      </NavLink> */}
       <NavLink className={({ isActive }) =>clsx(styles.item,isActive&&styles.active)} to="/customer">
         <PeopleOutlinedIcon sx={{ color: "#fff" }} />
         <div  className={styles.text} >

@@ -73,7 +73,7 @@ function Bill() {
       let {data:{data,message,type}}=res
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         let total=data.products.reduce((a,b)=>a+b.price*b.quantity,0)
         data.total=total
         setBill(data)   
@@ -130,7 +130,7 @@ function Bill() {
       let {data:{data,message,type}}=res
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         setIds(data.ids)
       }
     })
@@ -157,7 +157,7 @@ function Bill() {
           showLabels
           value={bottomNavigation}
           onChange={(event, newValue) => {
-            console.log(newValue)
+            // console.log(newValue)
             setBottomNavigation(newValue);
             getListBillId(newValue)
           }}

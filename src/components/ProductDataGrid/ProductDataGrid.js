@@ -173,7 +173,7 @@ function ProductDataGrid() {
       let {data,message,type}=res.data
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         data.forEach(item=>item.label=item.name)
         data.sort((a,b)=>a.label.localeCompare(b.label))
         setBrandClick(data[0])
@@ -191,7 +191,7 @@ function ProductDataGrid() {
   const changeBrand=(item)=>{
     setBrandClick(item)
     let {_id,label}=item
-    console.log({_id,label})
+    // console.log({_id,label})
     getProductsByBrand(_id)
   }
   const getProductsByBrand=(brandId)=>{
@@ -207,7 +207,7 @@ function ProductDataGrid() {
       let {data,message,type}=res.data
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         data.forEach(item=>item.id=item._id)
         setListProduct(data)
       }
@@ -221,7 +221,7 @@ function ProductDataGrid() {
   }
   const clickDetailProduct=(product)=>{
     setOpenDetailProduct(true)
-    console.log(product)
+    // console.log(product)
     setItemClick(product)
   }
 
@@ -258,7 +258,7 @@ function ProductDataGrid() {
     })
   }
   const handleAddProduct=()=>{
-    console.log('objAddProductValue',objAddProductValue)
+    // console.log('objAddProductValue',objAddProductValue)
     let {name,brand,battery,card,cpu,hardDrive,image,operatingSystem,price,ram,screen,description}=objAddProductValue
     name=name.trim()
     battery=battery.trim()
@@ -305,9 +305,9 @@ function ProductDataGrid() {
     let token=localStorage.getItem("token");
     axios.post(linkFileStore,{data:data})
     .then(res=>{
-      console.log(res)
+      // console.log(res)
       let link=res.data.split('>')[1].split('<')[0]
-      console.log(link)
+      // console.log(link)
 
       axios.post(`/products`,{name,brand:brand._id,battery,card,cpu,hardDrive,image:link,operatingSystem,price:parseInt(price),ram,screen,description},{
         headers: {
@@ -358,7 +358,7 @@ function ProductDataGrid() {
 
   }
   const handleEditProduct=()=>{
-    console.log('objEditProductValue',objEditProductValue)
+    // console.log('objEditProductValue',objEditProductValue)
     let {name,brand,battery,card,cpu,hardDrive,image,operatingSystem,price,ram,screen,description}=objEditProductValue
     name=name.trim()
     battery=battery.trim()
@@ -405,9 +405,9 @@ function ProductDataGrid() {
     let token=localStorage.getItem("token");
     axios.post(linkFileStore,{data:data})
     .then(res=>{
-      console.log(res)
+      // console.log(res)
       let link=res.data.split('>')[1].split('<')[0]
-      console.log(link)
+      // console.log(link)
 
       axios.patch(`/products/${itemClick._id}`,{name,brand:brand._id,battery,card,cpu,hardDrive,operatingSystem,price:parseInt(price),ram,screen,description,image:link},{
         headers: {

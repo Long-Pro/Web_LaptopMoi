@@ -103,7 +103,7 @@ function BrandDataGrid() {
       let {data,message,type}=res.data
       if(type==FAIL) showErrorMess(message[0])
       else{ 
-        console.log(data)
+        // console.log(data)
         data.forEach(item=>item.id=item._id)
         setListBrand(data)
       }
@@ -147,9 +147,9 @@ function BrandDataGrid() {
     let token=localStorage.getItem("token");
     axios.post(linkFileStore,{data:data})
     .then(res=>{
-      console.log(res)
+      // console.log(res)
       let link=res.data.split('>')[1].split('<')[0]
-      console.log(link)
+      // console.log(link)
 
       axios.post(`/brands`,{name,image:link},{
         headers: {
@@ -208,9 +208,9 @@ function BrandDataGrid() {
     let token=localStorage.getItem("token");
     axios.post(linkFileStore,{data:data})
     .then(res=>{
-      console.log(res)
+      // console.log(res)
       let link=res.data.split('>')[1].split('<')[0]
-      console.log(link)
+      // console.log(link)
 
       axios.patch(`/brands/${itemClick._id}`,{name,image:link},{
         headers: {
