@@ -29,7 +29,7 @@ function Router() {
     <Routes>
       <Route element={<ProtectedRoutes />} >
         <Route path="/" element={<App />}>
-          <Route path="/" element={<Dashboard />} />
+          {/* <Route path="/" element={<Dashboard />} /> */}
           <Route path="/product" element={<Product />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/bill" element={<Bill />} />

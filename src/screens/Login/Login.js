@@ -40,7 +40,7 @@ function Login() {
           dispatch(changeIsLogin(true))
           
           localStorage.setItem('token', token);
-          navigate("/");
+          navigate("/customer");
         }
         
       })

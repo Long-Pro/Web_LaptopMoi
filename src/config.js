@@ -1,4 +1,4 @@
-export const linkAPI='http://localhost:3000'
+export const linkAPI='https://api-laptopmoi.herokuapp.com'
 export const linkFileStore='https://file-store-1682.herokuapp.com/fileDB/uploadImageBase64'
 export const SUCCESS=1
 export const FAIL=0
