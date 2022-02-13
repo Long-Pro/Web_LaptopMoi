@@ -28,7 +28,7 @@ function Login() {
     // console.log(event.target.value)
   };
   const handleLogin=()=>{
-    console.log({account,password})
+    // console.log({account,password})
     axios.post('/staff/login',{account,password})
       .then(res=>{
         let {data:{data,message,type,token}}=res
