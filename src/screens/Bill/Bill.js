@@ -197,6 +197,11 @@ function Bill() {
           </>}
           {bill.type==2&&<>
             <Divider   sx={{width:'100%'}} />
+            <Button variant="contained" fullWidth color="success" sx={{marginTop:'20px'}}
+              onClick={()=>{setAction('success');setOpen(true)}}
+            >
+              Xác nhận đã giao 
+            </Button>
             <Button variant="contained" fullWidth color="error" sx={{marginTop:'20px'}}
               onClick={()=>{setAction('cancel');setOpen(true)}}
             >
